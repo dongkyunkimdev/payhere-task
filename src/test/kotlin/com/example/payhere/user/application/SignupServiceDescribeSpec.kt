@@ -23,7 +23,6 @@ class SignupServiceDescribeSpec : DescribeSpec({
 
                 assertSoftly {
                     resultInfo.username shouldBe notDuplicatedUsernameCommand.username
-                    resultInfo.name shouldBe notDuplicatedUsernameCommand.name
                 }
             }
         }
@@ -41,14 +40,12 @@ class SignupServiceDescribeSpec : DescribeSpec({
     companion object {
         private val duplicatedUsernameCommand = SignupService.SignupCommand(
             username = "username@email.com",
-            password = "password",
-            name = "name"
+            password = "password"
         )
 
         private val notDuplicatedUsernameCommand = SignupService.SignupCommand(
             username = "username@email.com",
-            password = "password",
-            name = "name"
+            password = "password"
         )
     }
 }
