@@ -5,4 +5,5 @@ import com.example.payhere.user.domain.User
 interface UserPersistencePort {
     fun saveUser(user: User): User
     fun existsUserByUsername(username: String): Boolean
+    fun findUserByUsername(username: String): User?
 }

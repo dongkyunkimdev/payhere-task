@@ -16,4 +16,8 @@ class UserPersistenceAdapter(
     override fun existsUserByUsername(username: String): Boolean {
         return userRepository.existsByUsername(username)
     }
+
+    override fun findUserByUsername(username: String): User? {
+        return userRepository.findUserByUsername(username)
+    }
 }
