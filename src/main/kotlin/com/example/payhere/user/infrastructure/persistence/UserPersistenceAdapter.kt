@@ -9,15 +9,7 @@ import org.springframework.stereotype.Component
 class UserPersistenceAdapter(
     private val userRepository: UserRepository
 ) : UserPersistencePort {
-    override fun saveUser(user: User): User {
-        return userRepository.save(user)
-    }
-
-    override fun existsUserByUsername(username: String): Boolean {
-        return userRepository.existsByUsername(username)
-    }
-
-    override fun findUserByUsername(username: String): User? {
-        return userRepository.findUserByUsername(username)
-    }
+    override fun saveUser(user: User): User = userRepository.save(user)
+    override fun existsUserByUsername(username: String): Boolean = userRepository.existsByUsername(username)
+    override fun findUserByUsername(username: String): User? = userRepository.findUserByUsername(username)
 }
