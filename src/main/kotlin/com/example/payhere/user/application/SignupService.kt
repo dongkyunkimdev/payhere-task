@@ -1,5 +1,6 @@
 package com.example.payhere.user.application
 
+import com.example.payhere.user.application.exception.DuplicateUsernameException
 import com.example.payhere.user.domain.User
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
