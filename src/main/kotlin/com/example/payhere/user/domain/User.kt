@@ -11,8 +11,7 @@ import javax.validation.constraints.Email
 @Table(name = "users")
 class User(
     username: String,
-    password: String,
-    name: String
+    password: String
 ) : JpaAuditEntity() {
 
     @Column(name = "username", unique = true, nullable = false)
@@ -22,10 +21,6 @@ class User(
 
     @Column(name = "password", nullable = false)
     var password: String = password
-        protected set
-
-    @Column(name = "name", nullable = false)
-    var name: String = name
         protected set
 
     fun isCorrectPassword(passwordEncoder: BCryptPasswordEncoder, password: String): Boolean =

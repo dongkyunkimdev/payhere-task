@@ -19,26 +19,22 @@ class SignupController(
 
     data class SignupRequestDto(
         @field:Email val username: String,
-        var password: String,
-        val name: String
+        var password: String
     ) {
         fun toCommand(): SignupService.SignupCommand = SignupService.SignupCommand(
             username = this.username,
-            password = this.password,
-            name = this.name
+            password = this.password
         )
     }
 
     data class SignupResponseDto(
         val id: String,
-        val username: String,
-        val name: String
+        val username: String
     ) {
         companion object {
             fun from(info: SignupService.SignupInfo) = SignupResponseDto(
                 id = info.id,
-                username = info.username,
-                name = info.name
+                username = info.username
             )
         }
     }
