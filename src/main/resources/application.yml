@@ -12,3 +12,7 @@ spring:
       hibernate:
         format_sql: true
         show_sql: true
+
+jwt:
+  secret: eE11SHUioa4xnFBpO96FWbUgErOldAFBqnSAxqoEuBTPkIcvFryduRG738my0Boz
+  validity-in-milliseconds: 300000
