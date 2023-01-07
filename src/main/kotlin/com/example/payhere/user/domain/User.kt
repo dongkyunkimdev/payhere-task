@@ -4,6 +4,7 @@ import com.example.payhere.common.entity.JpaAuditEntity
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Table
+import javax.validation.constraints.Email
 
 @Entity
 @Table(name = "users")
@@ -13,6 +14,7 @@ class User(
     name: String
 ) : JpaAuditEntity() {
     @Column(name = "username", unique = true, nullable = false)
+    @Email
     var username: String = username
         protected set
 

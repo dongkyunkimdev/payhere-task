@@ -5,7 +5,6 @@ import com.example.payhere.user.domain.User
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import javax.validation.constraints.Email
 
 @Service
 class SignupService(
@@ -24,7 +23,7 @@ class SignupService(
     }
 
     data class SignupCommand(
-        @field:Email val username: String,
+        val username: String,
         var password: String,
         val name: String
     ) {
