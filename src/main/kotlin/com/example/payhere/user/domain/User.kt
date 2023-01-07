@@ -1,6 +1,7 @@
 package com.example.payhere.user.domain
 
 import com.example.payhere.common.entity.JpaAuditEntity
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Table
@@ -13,6 +14,7 @@ class User(
     password: String,
     name: String
 ) : JpaAuditEntity() {
+
     @Column(name = "username", unique = true, nullable = false)
     @Email
     var username: String = username
@@ -25,4 +27,7 @@ class User(
     @Column(name = "name", nullable = false)
     var name: String = name
         protected set
+
+    fun isCorrectPassword(passwordEncoder: BCryptPasswordEncoder, password: String): Boolean =
+        passwordEncoder.matches(password, this.password)
 }
