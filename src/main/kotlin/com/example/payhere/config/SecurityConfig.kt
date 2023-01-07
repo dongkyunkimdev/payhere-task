@@ -15,7 +15,7 @@ class SecurityConfig {
             .httpBasic().disable()
 
             .authorizeRequests()
-            .antMatchers("/user/signup", "/user/login").permitAll()
+            .antMatchers("/user/signup", "/user/signin").permitAll()
             .anyRequest().authenticated()
 
         return http.build()
