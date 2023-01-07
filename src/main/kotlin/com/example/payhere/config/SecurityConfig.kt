@@ -14,10 +14,6 @@ class SecurityConfig {
             .formLogin().disable()
             .httpBasic().disable()
 
-            .authorizeRequests()
-            .antMatchers("/user/signup", "/user/signin").permitAll()
-            .anyRequest().authenticated()
-
         return http.build()
     }
 }
