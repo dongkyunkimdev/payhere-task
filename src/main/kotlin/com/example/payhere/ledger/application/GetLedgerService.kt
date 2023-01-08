@@ -33,7 +33,7 @@ class GetLedgerService(
         companion object {
             fun from(ledger: Ledger): GetLedgerInfo =
                 GetLedgerInfo(
-                    username = ledger.user.getId(),
+                    username = ledger.user.username,
                     ledgerId = ledger.getId(),
                     price = ledger.price,
                     memo = ledger.memo,
