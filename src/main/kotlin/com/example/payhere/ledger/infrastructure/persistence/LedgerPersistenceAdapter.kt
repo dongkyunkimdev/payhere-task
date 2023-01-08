@@ -10,4 +10,5 @@ class LedgerPersistenceAdapter(
     private val ledgerRepository: LedgerRepository
 ) : LedgerPersistencePort {
     override fun saveLedger(ledger: Ledger): Ledger = ledgerRepository.save(ledger)
+    override fun findLedgerById(id: String): Ledger? = ledgerRepository.findLedgerById(id)
 }
