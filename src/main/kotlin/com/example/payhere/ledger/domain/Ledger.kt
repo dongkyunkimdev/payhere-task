@@ -2,6 +2,7 @@ package com.example.payhere.ledger.domain
 
 import com.example.payhere.common.entity.JpaAuditEntity
 import com.example.payhere.ledger.application.UpdateLedgerService
+import com.example.payhere.ledger.domain.exception.AlreadyDeletedException
 import com.example.payhere.ledger.domain.exception.IsNotDeletedException
 import com.example.payhere.user.domain.User
 import javax.persistence.*
@@ -35,6 +36,10 @@ class Ledger(
     }
 
     fun delete() {
+        if (isDeleted) {
+            throw AlreadyDeletedException(getId())
+        }
+
         isDeleted = true
     }
 
