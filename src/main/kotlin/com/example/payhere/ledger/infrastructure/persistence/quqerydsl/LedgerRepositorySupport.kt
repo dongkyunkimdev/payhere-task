@@ -16,4 +16,11 @@ class LedgerRepositorySupport(
             .leftJoin(QLedger.ledger.user, QUser.user)
             .fetchJoin()
             .fetchOne()
+
+    fun findAllLedgerByUserId(id: String): List<Ledger> =
+        queryFactory.selectFrom(QLedger.ledger)
+            .where(QLedger.ledger.user.id.eq(id))
+            .leftJoin(QLedger.ledger.user, QUser.user)
+            .fetchJoin()
+            .fetch()
 }

@@ -13,4 +13,5 @@ class LedgerPersistenceAdapter(
 ) : LedgerPersistencePort {
     override fun saveLedger(ledger: Ledger): Ledger = ledgerRepository.save(ledger)
     override fun findLedgerById(id: String): Ledger? = ledgerRepositorySupport.findLedgerById(id)
+    override fun findAllLedgerByUserId(id: String): List<Ledger> = ledgerRepositorySupport.findAllLedgerByUserId(id)
 }
