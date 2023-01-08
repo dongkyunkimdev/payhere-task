@@ -1,6 +1,7 @@
 package com.example.payhere.ledger.domain
 
 import com.example.payhere.common.entity.JpaAuditEntity
+import com.example.payhere.ledger.application.UpdateLedgerService
 import com.example.payhere.user.domain.User
 import javax.persistence.*
 
@@ -22,4 +23,9 @@ class Ledger(
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     var user: User = user
         protected set
+
+    fun update(command: UpdateLedgerService.UpdateLedgerCommand) {
+        price = command.price
+        memo = command.memo
+    }
 }
