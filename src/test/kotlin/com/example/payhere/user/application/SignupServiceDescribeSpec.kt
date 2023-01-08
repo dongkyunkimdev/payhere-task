@@ -1,7 +1,6 @@
 package com.example.payhere.user.application
 
 import com.example.payhere.user.application.exception.DuplicateUsernameException
-import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
@@ -21,9 +20,7 @@ class SignupServiceDescribeSpec : DescribeSpec({
             it("회원가입에 성공하고 command와 동일한 값을 가진 SignupInfo 응답") {
                 val resultInfo = signupService.command(notDuplicatedUsernameCommand)
 
-                assertSoftly {
-                    resultInfo.username shouldBe notDuplicatedUsernameCommand.username
-                }
+                resultInfo.username shouldBe notDuplicatedUsernameCommand.username
             }
         }
 
