@@ -28,11 +28,13 @@ class WriteLedgerController(
     )
 
     data class WriteLedgerResponseDto(
+        val ledgerId: String,
         val price: Long,
         val memo: String
     ) {
         companion object {
             fun from(info: WriteLedgerService.WriteLedgerInfo) = WriteLedgerResponseDto(
+                ledgerId = info.ledgerId,
                 price = info.price,
                 memo = info.memo
             )

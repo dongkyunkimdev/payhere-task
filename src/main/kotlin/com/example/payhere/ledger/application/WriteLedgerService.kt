@@ -17,7 +17,7 @@ class WriteLedgerService(
         savedUser ?: throw UsernameNotFoundException(command.username)
         val savedLedger = ledgerPersistencePort.saveLedger(Ledger(command.price, command.memo, savedUser))
 
-        return WriteLedgerInfo(price = savedLedger.price, memo = savedLedger.memo)
+        return WriteLedgerInfo(ledgerId = savedLedger.getId(), price = savedLedger.price, memo = savedLedger.memo)
     }
 
     data class WriteLedgerCommand(
@@ -27,6 +27,7 @@ class WriteLedgerService(
     )
 
     data class WriteLedgerInfo(
+        val ledgerId: String,
         val price: Long,
         val memo: String
     )
