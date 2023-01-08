@@ -20,6 +20,10 @@ class Ledger(
     var memo: String = memo
         protected set
 
+    @Column(name = "is_deleted", nullable = false)
+    var isDeleted: Boolean = false
+        protected set
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     var user: User = user
         protected set
@@ -27,5 +31,9 @@ class Ledger(
     fun update(command: UpdateLedgerService.UpdateLedgerCommand) {
         price = command.price
         memo = command.memo
+    }
+
+    fun delete() {
+        isDeleted = true
     }
 }
