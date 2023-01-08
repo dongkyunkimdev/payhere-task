@@ -2,6 +2,7 @@ package com.example.payhere.ledger.application
 
 import com.example.payhere.ledger.application.exception.LedgerIdNotFoundException
 import com.example.payhere.ledger.domain.Ledger
+import com.example.payhere.ledger.domain.exception.IsNotDeletedException
 import com.example.payhere.user.domain.User
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
@@ -25,8 +26,13 @@ class RestoreLedgerServiceDescribeSpec : DescribeSpec({
         context("존재하는 ledgerId를 가진 Command가 주어지면") {
             val expectedLedger = Ledger(price = 10000, memo = "memo", user = User("username", "password"))
             every { mockLedgerPersistencePort.findLedgerById(existsLedgerIdCommand.ledgerId) } answers { expectedLedger }
-            it("가계부 복구에 성공하고 RestoreLedgerInfo 응답") {
-                restoreLedgerService.command(existsLedgerIdCommand)
+
+            context("삭제된 상태의 가계부가 아닌 경우") {
+                it("IsNotDeletedException 발생") {
+                    shouldThrow<IsNotDeletedException> {
+                        restoreLedgerService.command(existsLedgerIdCommand)
+                    }
+                }
             }
         }
     }
