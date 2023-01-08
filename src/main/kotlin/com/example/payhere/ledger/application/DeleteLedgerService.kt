@@ -20,9 +20,7 @@ class DeleteLedgerService(
     }
 
     data class DeleteLedgerCommand(
-        val ledgerId: String,
-        val price: Long,
-        val memo: String,
+        val ledgerId: String
     )
 
     data class DeleteLedgerInfo(
