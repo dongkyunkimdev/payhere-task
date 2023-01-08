@@ -36,4 +36,12 @@ class Ledger(
     fun delete() {
         isDeleted = true
     }
+
+    fun restore() {
+        if (!isDeleted) {
+            throw IsNotDeletedException(getId())
+        }
+
+        isDeleted = false
+    }
 }
