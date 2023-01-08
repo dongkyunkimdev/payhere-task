@@ -1,6 +1,8 @@
 package com.example.payhere.ledger.application
 
 import com.example.payhere.ledger.application.exception.LedgerIdNotFoundException
+import com.example.payhere.ledger.domain.Ledger
+import com.example.payhere.user.domain.User
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.mockk.every
@@ -17,6 +19,14 @@ class DeleteLedgerServiceDescribeSpec : DescribeSpec({
                 shouldThrow<LedgerIdNotFoundException> {
                     deleteLedgerService.command(notExistsLedgerIdCommand)
                 }
+            }
+        }
+
+        context("존재하는 ledgerId를 가진 Command가 주어지면") {
+            val expectedLedger = Ledger(price = 10000, memo = "memo", user = User("username", "password"))
+            every { mockLedgerPersistencePort.findLedgerById(existsLedgerIdCommand.ledgerId) } answers { expectedLedger }
+            it("가계부 삭제에 성공하고 DeleteLedgerInfo 응답") {
+                deleteLedgerService.command(existsLedgerIdCommand)
             }
         }
     }
