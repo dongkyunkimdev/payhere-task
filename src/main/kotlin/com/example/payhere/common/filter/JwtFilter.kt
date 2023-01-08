@@ -23,7 +23,7 @@ class JwtFilter(
                     request.getHeader("Authorization") ?: throw JwtValidateException("empty Authorization Header")
                 )
                 val claims = jwtUtil.resolveToken(token)
-                val mutableRequest: MutableHttpServletRequest = MutableHttpServletRequest(request)
+                val mutableRequest = MutableHttpServletRequest(request)
                 mutableRequest.putHeader("username", claims.subject)
 
                 filterChain.doFilter(mutableRequest, response)
